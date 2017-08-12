@@ -223,7 +223,6 @@ static int getbroadcastnets(struct in_addr *addrs, SOCKET sock, char *buf)
 #endif
 }
 
-typedef bool_t (*resultproc_t)();
 
 enum clnt_stat
 clnt_broadcast(

@@ -1,0 +1,25 @@
+MINGW32=i686-w64-mingw32
+MINGW64=x86_64-w64-mingw32
+
+all:	32 64
+
+32:
+	mkdir -p win32/bin
+	mkdir -p win32/bin32
+	cd win32/librpc && MINGW=$(MINGW32) make -f makefile.mingw
+	cd win32/rpcgen && MINGW=$(MINGW32) make -f makefile.mingw
+	cd win32/rpcinfo && MINGW=$(MINGW32) make -f makefile.mingw
+	cd win32/service && MINGW=$(MINGW32) make -f makefile.mingw
+	cp win32/bin/* win32/bin32
+
+64:
+	mkdir -p win32/bin
+	mkdir -p win32/bin64
+	cd win32/librpc && MINGW=$(MINGW64) make -f makefile.mingw
+	cd win32/rpcgen && MINGW=$(MINGW64) make -f makefile.mingw
+	cd win32/rpcinfo && MINGW=$(MINGW64) make -f makefile.mingw
+	cd win32/service && MINGW=$(MINGW64) make -f makefile.mingw
+	cp win32/bin/* win32/bin64
+	
+clean:
+	rm -f win32/*/*.o win32/*/*.exe win32/*/*.dll win32/*/*.lib bin/* bin32/* bin64/*

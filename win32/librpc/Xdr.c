@@ -368,7 +368,7 @@ bool_t xdr_enum(XDR *xdrs, enum_t *ep)
 bool_t xdr_opaque(XDR *xdrs,	caddr_t cp,	u_int cnt)
 {
 	u_int rndup;
-	static crud[BYTES_PER_XDR_UNIT];
+	static int crud[BYTES_PER_XDR_UNIT];
 
 	/*
 	 * if no data we are done

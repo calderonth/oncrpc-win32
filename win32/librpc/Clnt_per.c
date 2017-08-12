@@ -257,9 +257,11 @@ void clnt_perrno(enum clnt_stat num)
 
 char *clnt_spcreateerror(char *s)
 {
-	extern int sys_nerr;
 #ifndef WIN32
 	extern char *sys_errlist[];
+	extern int sys_nerr;
+#else
+	extern __declspec(dllimport) int sys_nerr;
 #endif
 	char *str = _buf();
 

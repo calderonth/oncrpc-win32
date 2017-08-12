@@ -1,6 +1,16 @@
 #ifndef __RPC_MAIN_HEADER__
 #define __RPC_MAIN_HEADER__
 
+struct commandline {
+        int cflag;
+        int hflag;
+        int lflag;
+        int sflag;
+        int mflag;
+        char *infile;
+        char *outfile;
+};
+
 static char *extendfile(char *file, char *ext);
 static void open_output(char *infile, char*outfile);
 static void open_input(char *infile, char *define);

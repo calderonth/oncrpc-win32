@@ -1,0 +1,46 @@
+CC=$(MINGW)-gcc
+CFLAGS=-fno-builtin-bcopy -fno-builtin-bcmp -fno-builtin-bzero
+
+AR=$(MINGW)-ar
+
+LDFLAGS=-lwsock32 -ladvapi32
+# Remove the -Wpointer-to-int-cast. This old code is full of them
+# TODO: clean all this mess: 
+CFLAGS+=-Wno-pointer-to-int-cast
+
+# If the rpc include directory is not included in the standard path
+# you have to give the path to it here.
+RPCINCLUDEPATH=../include
+
+SRC= Auth_non.c Auth_uni.c authunix.c bcopy.c Bindresv.c clnt_gen.c Clnt_per.c clnt_raw.c clnt_sim.c Clnt_tcp.c Clnt_udp.c Get_myad.c Getrpcen.c Getrpcpo.c nt.c Pmap_cln.c pmap_get.c pmap_gma.c pmap_pr.c pmap_pro.c Pmap_rmt.c rpc_call.c rpc_comm.c rpc_prot.c svc_auth.c Svc_autu.c Svc.c svc_raw.c Svc_run.c Svc_simp.c Svc_tcp.c Svc_udp.c Xdr_arra.c Xdr.c xdr_floa.c xdr_mem.c Xdr_rec.c Xdr_refe.c xdr_stdi.c Xdr_strarr.c
+ 
+OBJS=$(patsubst %.c, %.o, $(SRC))
+
+DEFINITION =    oncrpc.def
+
+# If the rpc library is not included in the standard lib path
+# you have to give the path to it here.
+RPCLIBPATH = ../bin/
+
+all: oncrpc.dll portmap.exe
+
+clean:
+	rm -f $(OBJS) oncrpc.lib oncrpc.dll oncrpc.exp portmap.obj portmap.exe ../rpcgen/oncrpc.dll
+
+portmap.exe:	oncrpc.lib portmap.c
+	$(CC) -I$(RPCINCLUDEPATH) -c -DONCRPC_STATIC $(CFLAGS) $(CVARSDLL) portmap.c
+	$(CC) -static -o portmap.exe portmap.o $(RPCLIBPATH)oncrpc.lib -lwsock32
+	cp portmap.exe ../bin/pm_ascii.exe
+
+oncrpc.lib: objs
+	$(AR) rcs oncrpc.lib  $(OBJS)
+
+oncrpc.dll: objs oncrpc.lib
+	$(CC) -shared -o oncrpc.dll -Wl,--output-def $(DEFINITION) $(OBJS) $(LDFLAGS)
+	mkdir -p ../bin
+	cp oncrpc.lib ../bin
+	cp oncrpc.dll ../bin
+	cp oncrpc.dll ../rpcgen
+
+objs:
+	$(CC) -I$(RPCINCLUDEPATH) -c -DONCRPC_STATIC $(CFLAGS) $(CVARSDLL) $(SRC)

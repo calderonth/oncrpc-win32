@@ -86,16 +86,6 @@ static char sccsid[] = "@(#)rpc_main.c 1.7 87/06/24 (C) 1987 SMI";
 
 #define EXTEND	1		/* alias for TRUE */
 
-struct commandline {
-	int cflag;
-	int hflag;
-	int lflag;
-	int sflag;
-	int mflag;
-	char *infile;
-	char *outfile;
-};
-
 static char *cmdname;
 #ifdef WIN32
 #ifdef __BORLANDC__

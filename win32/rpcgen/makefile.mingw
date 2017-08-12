@@ -1,0 +1,25 @@
+CC=$(MINGW)-gcc
+CFLAGS=-fno-builtin-bcopy -fno-builtin-bcmp -fno-builtin-bzero
+
+# If the rpc include directory is not included in the standard path
+# you have to give the path to it here.
+RPCINCLUDEPATH=../include
+
+# If the rpc library is not included in the standard lib path
+# you have to give the path to it here.
+RPCLIBPATH= ../bin
+
+SRC= rpc_main.c rpc_hout.c rpc_cout.c rpc_pars.c rpc_scan.c rpc_util.c rpc_svco.c rpc_clnt.c
+OBJS=$(patsubst %.c, %.o, $(SRC))
+ 
+GOAL=rpcgen.exe
+
+$(GOAL): objs $(OBJS) $(RPCLIBPATH)/oncrpc.lib
+	$(CC) -o $(GOAL) $(OBJS) $(RPCLIBPATH)/oncrpc.lib
+	cp $(GOAL) ../bin
+
+clean:
+	rm -f $(GOAL) $(OBJS)
+
+objs:
+	$(CC) -DONCRPC_STATIC -c -I$(RPCINCLUDEPATH) $(CFLAGS) $(SRC)

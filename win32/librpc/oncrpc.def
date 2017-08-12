@@ -1,95 +1,99 @@
-LIBRARY oncrpc
 EXPORTS
-authnone_create
-authunix_create
-authunix_create_default
-bcopy
-bzero
-bcmp
-clnt_create
-clnt_broadcast
-clnt_pcreateerror
-clnt_perrno
-clnt_perror
-clnt_spcreateerror
-clnt_sperrno
-clnt_sperror
-clntraw_create
-clnttcp_create
-clntudp_bufcreate
-clntudp_create
-get_myaddress
-getrpcbyname
-getrpcbynumber
-pmap_getmaps
-pmap_getport
-pmap_set
-pmap_unset
-rpc_nt_exit
-rpc_nt_init
-svc_getreq
-svc_getreqset
-svc_register
-svc_run
-svc_sendreply
-svc_unregister
-svcerr_auth
-svcerr_decode
-svcerr_noproc
-svcerr_noprog
-svcerr_progvers
-svcerr_systemerr
-svcerr_weakauth
-svcraw_create
-svctcp_create
-svcudp_bufcreate
-svcudp_create
-xdr_array
-xdr_authunix_parms
-xdr_bool
-xdr_bytes
-xdr_callhdr
-xdr_callmsg
-xdr_char
-xdr_des_block
-xdr_double
-xdr_enum
-xdr_float
-xdr_free
-xdr_hyper
-xdr_int32_t
-xdr_uint32_t
-xdr_int64_t
-xdr_uint64_t
-xdr_int
-xdr_long
-xdr_netobj
-xdr_opaque
-xdr_opaque_auth
-xdr_pmap
-xdr_pmaplist
-xdr_pointer
-xdr_reference
-xdr_replymsg
-xdr_short
-xdr_string
-xdr_u_char
-xdr_u_int
-xdr_u_hyper
-xdr_u_long
-xdr_u_short
-xdr_union
-xdr_vector
-xdr_void
-xdr_wrapstring
-xdrmem_create
-xdrrec_create
-xdrrec_endofrecord
-xdrrec_eof
-xdrrec_skiprecord
-xdrstdio_create
-xprt_register
-xprt_unregister
-svc_fdset DATA
-rpc_createerr DATA
-_null_auth DATA
+    _null_auth @1 DATA
+    authnone_create @2
+    authunix_create @3
+    authunix_create_default @4
+    bcmp @5
+    bcopy @6
+    bzero @7
+    clnt_broadcast @8
+    clnt_create @9
+    clnt_pcreateerror @10
+    clnt_perrno @11
+    clnt_perror @12
+    clnt_spcreateerror @13
+    clnt_sperrno @14
+    clnt_sperror @15
+    clntraw_create @16
+    clnttcp_create @17
+    clntudp_bufcreate @18
+    clntudp_create @19
+    get_myaddress @20
+    getrpcbyname @21
+    getrpcbynumber @22
+    getrpcent @23
+    nt_rpc_report @24
+    pmap_getmaps @25
+    pmap_getport @26
+    pmap_rmtcall @27
+    pmap_set @28
+    pmap_unset @29
+    rpc_nt_exit @30
+    rpc_nt_init @31
+    svc_getreq @32
+    svc_getreqset @33
+    svc_register @34
+    svc_run @35
+    svc_sendreply @36
+    svc_unregister @37
+    svcerr_auth @38
+    svcerr_decode @39
+    svcerr_noproc @40
+    svcerr_noprog @41
+    svcerr_progvers @42
+    svcerr_systemerr @43
+    svcerr_weakauth @44
+    svcraw_create @45
+    svctcp_create @46
+    svcudp_bufcreate @47
+    svcudp_create @48
+    xdr_array @49
+    xdr_authunix_parms @50
+    xdr_bool @51
+    xdr_bytes @52
+    xdr_callhdr @53
+    xdr_callmsg @54
+    xdr_char @55
+    xdr_des_block @56
+    xdr_double @57
+    xdr_enum @58
+    xdr_float @59
+    xdr_free @60
+    xdr_hyper @61
+    xdr_int @62
+    xdr_int32_t @63
+    xdr_int64_t @64
+    xdr_long @65
+    xdr_netobj @66
+    xdr_opaque @67
+    xdr_opaque_auth @68
+    xdr_pmap @69
+    xdr_pmaplist @70
+    xdr_pointer @71
+    xdr_quad_t @72
+    xdr_reference @73
+    xdr_replymsg @74
+    xdr_rmtcall_args @75
+    xdr_rmtcallres @76
+    xdr_short @77
+    xdr_strarray @78
+    xdr_string @79
+    xdr_u_char @80
+    xdr_u_hyper @81
+    xdr_u_int @82
+    xdr_u_long @83
+    xdr_u_short @84
+    xdr_uint32_t @85
+    xdr_uint64_t @86
+    xdr_union @87
+    xdr_vector @88
+    xdr_void @89
+    xdr_wrapstring @90
+    xdrmem_create @91
+    xdrrec_create @92
+    xdrrec_endofrecord @93
+    xdrrec_eof @94
+    xdrrec_skiprecord @95
+    xdrstdio_create @96
+    xprt_register @97
+    xprt_unregister @98

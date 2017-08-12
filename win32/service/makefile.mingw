@@ -1,0 +1,29 @@
+CC=$(MINGW)-gcc
+CFLAGS=-fno-builtin-bcopy -fno-builtin-bcmp -fno-builtin-bzero
+
+RPCINCLUDEPATH=../include
+
+# If the rpc library is not included in the standard lib path
+# you have to give the path to it here.
+RPCLIBPATH=../bin
+
+# If you are on Windows NT uncomment the next line
+OS=_NT
+
+# If you are on Windows 95 uncomment the next line
+#OS=_W95
+
+all: portmap.exe inst_pm.exe
+
+# Update the object file if necessary
+clean:
+	rm -f *.o *.exe	
+
+portmap.exe: service.c portmap.c $(RPCLIBPATH)/oncrpc.lib
+	$(CC) -I$(RPCINCLUDEPATH) -D$(OS) -DONCRPC_STATIC $(CFLAGS) -o portmap.exe portmap.c service.c $(RPCLIBPATH)/oncrpc.lib -lwsock32 -ladvapi32 -luser32
+	cp portmap.exe ../bin/
+
+inst_pm.exe: inst_pm.c
+	$(CC) -I$(RPCINCLUDEPATH) -D$(OS) -DONCRPC_STATIC $(CFLAGS) -o inst_pm.exe inst_pm.c -ladvapi32 -luser32
+	cp inst_pm.exe ../bin
+
